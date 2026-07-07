@@ -1,7 +1,30 @@
-# ambient-expense-agent
+# 💸 ambient-expense-agent
 
-Simple ReAct agent
-Agent generated with `agents-cli` version `0.5.0`
+An intelligent, secure, and resumable expense auditing agent built using the **Google Agent Development Kit (ADK)** and powered by **Gemini**. 
+
+This agent automates the compliance review and approval of expense reports, using structured workflow routing, automated PII sanitization, prompt-injection shielding, and AI-driven risk scoring.
+
+---
+
+## 🔍 How it Works
+
+The agent processes incoming expense payloads (supporting plain JSON or base64-encoded Pub/Sub messages) through a multi-stage workflow:
+
+1. **Structured Input Parsing**: Extracts submitter, amount, category, date, and description.
+2. **Threshold-Based Routing**: 
+   - Expenses **under the configured threshold** (default: `$100.00`) are **Auto-Approved** immediately, skipping further review.
+   - Expenses **equal to or over the threshold** are sent for full security and compliance auditing.
+3. **Security Checkpoint**:
+   - **PII Scrubbing**: Automatically detects and redacts Social Security Numbers (SSN) and Credit Card numbers from descriptions.
+   - **Prompt Injection Defense**: Scans descriptions for malicious injection attempts (e.g., "ignore instructions", "auto-approve this"). If detected, it flags a security event and **bypasses the LLM entirely**, escalating the report directly to human review to prevent jailbreak attacks.
+4. **AI Risk Assessment**: 
+   - Uses **Gemini** (default: `gemini-3.1-flash-lite`) to audit the expense for compliance issues, unusual amounts, and generic or suspicious descriptions.
+   - Generates a structured risk score (0-100), risk factors, and a concise summary.
+5. **Resumable Human Approval Gate**: 
+   - Pauses execution if human sign-off is required, requesting a manual approval/rejection decision before finalizing.
+6. **Outcome Recording**: Logs and returns the final approval/rejection status and audit summary.
+
+---
 
 ## Project Structure
 
