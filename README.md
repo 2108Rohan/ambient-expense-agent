@@ -2,7 +2,7 @@
 
 An intelligent, secure, and resumable expense auditing agent built using the **Google Agent Development Kit (ADK)** and powered by **Gemini**. 
 
-This agent automates the compliance review and approval of expense reports, using structured workflow routing, automated PII sanitization, prompt-injection shielding, and AI-driven risk scoring.
+This agent automates the compliance review and approval of expense reports, using structured workflow routing, automated PII sanitization, prompt-injection shielding, and AI-driven risk scoring........
 
 ---
 
